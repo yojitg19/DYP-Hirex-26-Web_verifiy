@@ -1,26 +1,5 @@
 {
-  "version": 2,
-  "framework": "react",
-  "buildCommand": "cd frontend && npm run build",
+  "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
-  "env": {
-    "VITE_API_URL": {
-      "description": "Backend API URL",
-      "default": "http://localhost:3000"
-    },
-    "VITE_FACE_VERIFICATION_URL": {
-      "description": "Face verification microservice URL (external)",
-      "default": "http://localhost:5000"
-    },
-    "VITE_PAYMENT_GATEWAY_URL": {
-      "description": "Payment gateway URL (external)",
-      "default": "http://localhost:5001"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "framework": "react"
 }
