@@ -149,6 +149,19 @@ claim_rejected | badge_issued
 
 ---
 
+### 11. Escrow & Payout System
+A secure payment gateway that handles event-based transactions:
+- **Attendee Registration** - Users register and capture payments
+- **Escrow Management** - Funds held securely until event completion
+- **Check-in Tracking** - Monitor attendance rates
+- **Ratings & Complaints** - Attendees submit feedback post-event
+- **Admin Processing** - Admins review and approve payouts based on ratings and complaints
+- **Refund Management** - Cancel events and issue full refunds automatically
+
+This microservice ensures trust between event organizers and attendees by holding payments in escrow until all conditions are met.
+
+---
+
 ## 💻 Technology Stack
 
 | Layer | Technology | Purpose |
@@ -160,6 +173,7 @@ claim_rejected | badge_issued
 | **Liveness Detection** | MediaPipe FaceMesh | 468-landmark live face detection |
 | **Cryptography** | Python hashlib SHA-256 | Identity, claim, and file hashing |
 | **Security** | Werkzeug | Password hashing (PBKDF2-SHA256) |
+| **Payment Gateway** | Flask, JavaScript | Escrow and payout processing |
 
 ---
 
@@ -195,6 +209,12 @@ DYP-Hirex-26-Web_verifiy/
 │   ├── app.py                         # Flask face detection API
 │   ├── requirements.txt               # Python dependencies
 │   └── uploads/                       # Document uploads
+│
+├── paymentgateway2/                   # Escrow & Payout System
+│   ├── app.py                         # Flask payment gateway application
+│   ├── requirements.txt               # Python dependencies
+│   ├── templates/                     # HTML templates
+│   └── static/                        # CSS & JavaScript
 │
 ├── images/                            # Screenshots & assets
 │   ├── 1-register.png                 # Registration screenshot
@@ -252,7 +272,7 @@ DYP-Hirex-26-Web_verifiy/
 
 ### Prerequisites
 - **Node.js** (for frontend and backend)
-- **Python 3.8+** (for face verification)
+- **Python 3.8+** (for face verification and payment gateway)
 - **Git**
 
 ### Step 1: Clone the Project
@@ -278,7 +298,17 @@ python app.py
 # Service runs at http://localhost:5000
 ```
 
-### Step 4: Set Up the Frontend
+### Step 4: Set Up the Payment Gateway
+```bash
+cd paymentgateway2
+python -m venv venv
+venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python app.py
+# Service runs at http://localhost:5000 (or use a different port if 5000 is in use)
+```
+
+### Step 5: Set Up the Frontend
 ```bash
 cd frontend
 npm install
@@ -301,6 +331,17 @@ npm run dev
 | GET | `/api/admin/pending-claims` | Get all manual review queue items |
 | POST | `/api/admin/review-claim` | Approve or reject a claim |
 | GET | `/api/user/dashboard/<id>` | Get user data and all claims |
+
+### Payment Gateway Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/register-attendee` | Register attendee and capture payment |
+| POST | `/check-in` | Check-in attendee for event |
+| POST | `/submit-rating` | Submit event rating and complaints |
+| GET | `/admin-dashboard` | View payout processing queue |
+| POST | `/process-payout` | Approve/reject payout decision |
+| POST | `/refund-event` | Cancel event and refund all attendees |
 
 All responses follow a consistent shape:
 ```json
@@ -335,6 +376,21 @@ All responses follow a consistent shape:
 - Claim flagged → trust score drops 30 points
 - Action logged as `tamper_detected`
 - Badge revoked automatically
+
+**Scenario 5 — Event Payment & Escrow**
+- 50 verified professionals register for an event
+- Payment captured and held in escrow
+- Event completes, 45 attendees check in (90% attendance)
+- Attendees submit ratings (average 4.5/5 stars)
+- Admin approves payout → organizer receives funds
+- System automatically settles transaction
+
+**Scenario 6 — Disputed Event & Refund**
+- Event organizer fails to deliver promised content
+- Attendees submit complaints during post-event survey
+- Admin reviews: multiple complaints, 2-star ratings
+- Admin rejects payout → funds automatically refunded to attendees
+- Organizer loses credibility and platform trust
 
 ---
 
