@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - VerifyID</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="logo">VerifyID</a>
+            <a href="register.html">Register</a>
+        </div>
+    </nav>
+
+    <div class="container-sm">
+        <div class="page-header" style="padding-top:60px">
+            <h1>Sign in to your account</h1>
+        </div>
+
+        <div id="alert-box" class="alert"></div>
+
+        <div class="card">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="••••••••">
+            </div>
+            <button class="btn btn-primary" id="login-btn" onclick="loginUser()">Sign In</button>
+            <p class="text-center text-muted mt-2">New user? <a href="register.html" style="color:var(--primary)">Register here</a></p>
+        </div>
+    </div>
+
+    <script src="js/device.js"></script>
+    <script>
+async function loginUser() {
+    const btn = document.getElementById('login-btn')
+    const email = document.getElementById('email').value.trim()
+    const password = document.getElementById('password').value.trim()
+    if (!email || !password) {
+        showAlert('error', 'Email and password are required')
+        return
+    }
+    btn.disabled = true
+    btn.textContent = 'Signing in...'
+    try {
+        const res = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        })
+        const data = await res.json()
+        if (!data.success) {
+            showAlert('error', data.error)
+            btn.disabled = false
+            btn.textContent = 'Sign In'
+            return
+        }
+        localStorage.setItem('user_id', data.data.user_id)
+        localStorage.setItem('email', data.data.email)
+        localStorage.setItem('trust_score', data.data.trust_score)
+        localStorage.setItem('is_admin', data.data.is_admin ? '1' : '0')
+        if (data.data.is_admin) {
+            window.location.href = 'admin.html'
+        } else {
+            window.location.href = 'dashboard.html'
+        }
+    } catch (e) {
+        showAlert('error', 'Network error. Is Flask running?')
+        btn.disabled = false
+        btn.textContent = 'Sign In'
+    }
+}
+
+function showAlert(type, msg) {
+    const el = document.getElementById('alert-box')
+    el.className = 'alert alert-' + type + ' show'
+    el.textContent = msg
+}
+    </script>
+</body>
+</html>

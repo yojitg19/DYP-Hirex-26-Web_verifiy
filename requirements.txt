@@ -1,0 +1,8 @@
+flask
+flask-cors
+werkzeug
+numpy
+opencv-python
+tensorflow
+deepface
+mediapipe

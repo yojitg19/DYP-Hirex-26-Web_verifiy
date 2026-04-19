@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - VerifyID</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="logo">VerifyID</a>
+            <a href="index.html">Back to Sign In</a>
+        </div>
+    </nav>
+
+    <div class="container-sm">
+        <div class="page-header">
+            <h1>Create your account</h1>
+        </div>
+
+        <div id="alert-box" class="alert"></div>
+
+        <div class="step-indicator">
+            <div class="step-dot" id="dot-1">1</div>
+            <div class="step-line"></div>
+            <div class="step-dot" id="dot-2">2</div>
+            <div class="step-line"></div>
+            <div class="step-dot" id="dot-3">3</div>
+            <div class="step-line"></div>
+            <div class="step-dot" id="dot-4">4</div>
+        </div>
+
+        <!-- Step 1: Email & Password -->
+        <div class="step-panel" id="step-1">
+            <div class="card">
+                <h2>Email and Password</h2>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="confirm-password" placeholder="••••••••" required>
+                </div>
+                <button class="btn btn-primary" onclick="goNext()">Next</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Face Verification -->
+        <div class="step-panel" id="step-2">
+            <div class="card">
+                <h2>Face Verification</h2>
+                <p style="color:var(--text-secondary);margin-bottom:16px">We'll capture 3 frames to verify your identity. Please ensure adequate lighting and face the camera directly.</p>
+                <video id="webcam-video" class="webcam-box" autoplay playsinline></video>
+                <p id="webcam-status" style="text-align:center;color:var(--text-secondary)">Starting camera...</p>
+                <button class="btn btn-primary" id="capture-btn" onclick="captureFrames()" style="margin-bottom:8px">Capture 3 Frames</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Review & Confirm -->
+        <div class="step-panel" id="step-3">
+            <div class="card">
+                <h2>Review Your Details</h2>
+                <p style="color:var(--text-secondary);margin-bottom:16px">Please verify the information before completing registration.</p>
+                <div style="background:#F9FAFB;padding:12px;border-radius:var(--radius);margin-bottom:16px">
+                    <p style="font-size:13px;color:var(--text-secondary)">Email:</p>
+                    <p style="font-weight:500"><span id="review-email"></span></p>
+                </div>
+                <div style="background:#F9FAFB;padding:12px;border-radius:var(--radius);margin-bottom:16px">
+                    <p style="font-size:13px;color:var(--text-secondary)">Face captured: 3 frames</p>
+                </div>
+                <button class="btn btn-primary" id="register-btn" onclick="submitRegistration()">Complete Registration</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Success -->
+        <div class="step-panel" id="step-4">
+            <div class="card text-center">
+                <h2 style="color:var(--success);margin-bottom:16px">Registration complete!</h2>
+                <div style="background:#F9FAFB;padding:16px;border-radius:var(--radius);margin-bottom:16px">
+                    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">Your identity fingerprint:</p>
+                    <div class="hash-display" id="result-hash" style="word-break:break-all"></div>
+                </div>
+                <div style="background:#F9FAFB;padding:16px;border-radius:var(--radius);margin-bottom:16px">
+                    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">Trust score:</p>
+                    <p style="font-size:24px;font-weight:600;color:var(--primary)"><span id="result-score"></span>/100</p>
+                </div>
+                <button class="btn btn-primary" onclick="window.location.href='dashboard.html'">Go to Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/device.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

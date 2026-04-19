@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - VerifyID</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="dashboard.html" class="logo">VerifyID</a>
+            <div>
+                <a href="claim.html" style="margin-left:20px">Submit Claim</a>
+                <a href="#" onclick="logout()" style="margin-left:20px">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 id="user-email">Dashboard</h1>
+        </div>
+
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="value" id="trust-score-val">0</div>
+                <div class="label">Trust score</div>
+            </div>
+            <div class="summary-card">
+                <div class="value" id="total-claims">0</div>
+                <div class="label">Total claims</div>
+            </div>
+        </div>
+
+        <div class="trust-bar-wrap" style="margin-bottom:24px">
+            <div class="trust-bar-fill" id="trust-bar" style="width:0%"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Identity Fingerprint</div>
+            <div style="margin-bottom:12px">
+                <p style="font-size:13px;color:var(--text-secondary);margin-bottom:4px">KYC status:</p>
+                <p style="font-weight:500"><span id="kyc-status">pending</span></p>
+            </div>
+            <div>
+                <p style="font-size:13px;color:var(--text-secondary);margin-bottom:4px">Your H0 hash:</p>
+                <div class="hash-display" id="hash-display">-</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Your claims</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Company</th>
+                        <th>Status</th>
+                        <th>Risk level</th>
+                        <th>Claim hash</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="claims-tbody">
+                    <tr><td colspan="6" class="text-center text-muted" style="padding:24px">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+    <script>
+        function logout() {
+            localStorage.clear()
+            window.location.href = 'index.html'
+        }
+    </script>
+</body>
+</html>
