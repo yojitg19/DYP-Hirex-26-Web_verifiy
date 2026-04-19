@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escrow Workflow - Step by Step</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/walkthrough.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 id="scenario-title">Escrow Workflow</h1>
+      <p id="scenario-desc">Follow the steps to understand how the system works.</p>
+    </header>
+
+    <!-- Progress tracker -->
+    <section class="card progress-card">
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      <p id="progress-text" class="progress-text">Step 1 of 5</p>
+    </section>
+
+    <!-- Main demo area -->
+    <section class="card demo-area">
+      <div id="step-container"></div>
+    </section>
+
+    <!-- Controls -->
+    <section class="card controls">
+      <div class="button-group">
+        <button id="prev-btn" class="secondary-btn">← Previous</button>
+        <button id="next-btn">Next →</button>
+      </div>
+      <a href="/demo" class="secondary-btn">← Back to Scenarios</a>
+    </section>
+
+    <!-- Live event metrics -->
+    <section class="card metrics-card">
+      <h3>Payment & Event Metrics</h3>
+      <div class="metrics-grid">
+        <div class="metric">
+          <span class="metric-label">Total Registrations</span>
+          <span class="metric-value" id="attendees">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Escrow Amount</span>
+          <span class="metric-value" id="escrow">₹0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Attendance Verification %</span>
+          <span class="metric-value" id="checkin-rate">0%</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Avg Quality Rating</span>
+          <span class="metric-value" id="rating">—</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Complaints Filed</span>
+          <span class="metric-value" id="complaints">0</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Settlement Status</span>
+          <span class="metric-value" id="status">Pending</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Escrow & Payout Management System | Complete workflow demonstration</p>
+    </footer>
+  </div>
+
+  <script src="/static/js/walkthrough.js"></script>
+</body>
+</html>

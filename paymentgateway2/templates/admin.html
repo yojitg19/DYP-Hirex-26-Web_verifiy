@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Escrow Demo</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Admin Dashboard</h1>
+      <p>Manage event escrow, warnings, and payout decisions.</p>
+    </header>
+
+    <section class="card event-card">
+      <h2>{{ event.name }}</h2>
+      <p><strong>Date:</strong> {{ event.date.strftime('%Y-%m-%d %H:%M UTC') }}</p>
+      <p><strong>Status:</strong> {{ state.status | capitalize }}</p>
+      <p><strong>Attendees:</strong> {{ state.attendees }}</p>
+      <p><strong>Escrow:</strong> ₹{{ state.escrow_amount }}</p>
+      <p><strong>Payout Status:</strong> {{ state.payout_status.replace('_', ' ') | capitalize }}</p>
+    </section>
+
+    <section class="card">
+      <h3>Event Controls</h3>
+      <button id="send-reminder">Send 48h Warning Reminder</button>
+      <button id="process-payout">Process Payout</button>
+      <button id="cancel-event">Cancel Event</button>
+      <div id="admin-result" class="message"></div>
+    </section>
+
+    <section class="card">
+      <h3>Event Timeline</h3>
+      <ul>
+        <li>Step 1: Attendees pay and funds are held in escrow.</li>
+        <li>Step 2: 48h before the event, organizer receives a reminder.</li>
+        <li>Step 3: Check-in tracking updates attendance rate.</li>
+        <li>Step 4: Attendees submit ratings and complaints.</li>
+        <li>Step 5: Payout is released, held, or frozen based on performance.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>Payment History</h3>
+      <div id="payment-history"></div>
+    </section>
+
+    <footer>
+      <p>Admin dashboard for the escrow & payout demo.</p>
+    </footer>
+  </div>
+
+  <script src="/static/js/admin.js"></script>
+</body>
+</html>

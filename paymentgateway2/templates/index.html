@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escrow & Payout Demo</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Escrow & Payout Model</h1>
+      <p>Demo of event payment flow, escrow holding, check-in tracking, and payout decision.</p>
+    </header>
+
+    <section class="card event-card">
+      <h2>{{ event.name }}</h2>
+      <p><strong>Date:</strong> {{ event.date.strftime('%Y-%m-%d %H:%M UTC') }}</p>
+      <p><strong>Venue:</strong> {{ event.venue }}</p>
+      <p><strong>Ticket:</strong> ₹{{ event.ticket_price }}</p>
+      <p><strong>Status:</strong> {{ state.status | capitalize }}</p>
+      <p><strong>Escrow:</strong> ₹{{ state.escrow_amount }}</p>
+      <p><strong>Payout Status:</strong> {{ state.payout_status.replace('_', ' ') | capitalize }}</p>
+      <p><strong>Attendees:</strong> {{ state.attendees }}</p>
+      <p><strong>Check-in rate:</strong> {{ state.checkin_rate }}%</p>
+      <p><strong>Average rating:</strong> {{ state.rating_avg }}</p>
+      <p><strong>Complaint rate:</strong> {{ state.complaint_rate }}%</p>
+      <p><strong>Hours until event:</strong> {{ state.hours_until_event }}</p>
+      <div class="button-row">
+        <a class="button" href="/event">View timeline & QR check-in</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Register & Pay</h3>
+      <form id="register-form">
+        <label>Name<input type="text" id="register-name" required /></label>
+        <label>Email<input type="email" id="register-email" required /></label>
+        <button type="submit">Register and Pay</button>
+      </form>
+      <div id="register-message" class="message"></div>
+    </section>
+
+    <section class="card">
+      <h3>Attendee Check-in</h3>
+      <form id="checkin-form">
+        <label>Email<input type="email" id="checkin-email" required /></label>
+        <button type="submit">Check In</button>
+      </form>
+      <div id="checkin-message" class="message"></div>
+    </section>
+
+    <section class="card">
+      <h3>Feedback & Complaints</h3>
+      <form id="feedback-form">
+        <label>Email<input type="email" id="feedback-email" required /></label>
+        <label>Rating
+          <select id="feedback-rating">
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+            <option value="0">0</option>
+          </select>
+        </label>
+        <label>Comment<textarea id="feedback-comment" placeholder="Describe any issue or complaint"></textarea></label>
+        <button type="submit">Submit Feedback</button>
+      </form>
+      <div id="feedback-message" class="message"></div>
+    </section>
+
+    <section class="card small-cards">
+      <div>
+        <h3>Admin Actions</h3>
+        <button id="process-payout">Process Payout</button>
+        <button id="cancel-event">Cancel Event</button>
+      </div>
+      <div id="admin-result" class="message"></div>
+    </section>
+
+    <section class="card">
+      <h3>Payment History</h3>
+      <div id="payment-history"></div>
+    </section>
+
+    <footer>
+      <p>Built with Flask, HTML, CSS, and JavaScript for a hackathon escrow demo.</p>
+    </footer>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

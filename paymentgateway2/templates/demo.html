@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workflow Scenarios - Escrow Management</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/demo.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Workflow Scenarios</h1>
+      <p>Select a scenario to explore payment handling and settlement logic in detail.</p>
+    </header>
+
+    <section class="card">
+      <h2>Available Scenarios</h2>
+      <p>Each scenario demonstrates different payment outcomes and decision paths:</p>
+      <div class="scenario-grid">
+        <div class="scenario-card" data-scenario="happy-path">
+          <div class="scenario-badge success">SUCCESS</div>
+          <h3>Successful Event Completion</h3>
+          <p>Event concludes with high attendance, positive feedback, and low complaints. Payout is processed and released to organizer.</p>
+          <div class="scenario-metrics">
+            <span>Expected Rating: 4.2+</span>
+            <span>Expected Complaints: &lt;5%</span>
+            <span>Outcome: Full Payout</span>
+          </div>
+          <button class="scenario-btn">Begin Scenario</button>
+        </div>
+
+        <div class="scenario-card" data-scenario="cancellation">
+          <div class="scenario-badge alert">CANCELLATION</div>
+          <h3>Event Cancellation & Refund</h3>
+          <p>Event is cancelled within 48 hours of scheduled start time. All attendee funds are immediately refunded without platform fees.</p>
+          <div class="scenario-metrics">
+            <span>Cancellation Window: &lt;48h</span>
+            <span>Refund Rate: 100%</span>
+            <span>Outcome: Full Refund</span>
+          </div>
+          <button class="scenario-btn">Begin Scenario</button>
+        </div>
+
+        <div class="scenario-card" data-scenario="frozen">
+          <div class="scenario-badge warning">INVESTIGATION</div>
+          <h3>Escrow Frozen - Quality Issues</h3>
+          <p>Event occurs but complaint threshold is exceeded (>10% of attendees). Escrow is frozen pending administrative investigation and resolution.</p>
+          <div class="scenario-metrics">
+            <span>Complaint Rate: &gt;10%</span>
+            <span>Expected Rating: &lt;3.5</span>
+            <span>Outcome: Hold & Review</span>
+          </div>
+          <button class="scenario-btn">Begin Scenario</button>
+        </div>
+
+        <div class="scenario-card" data-scenario="low-attendance">
+          <div class="scenario-badge warning">HOLD</div>
+          <h3>Low Attendance & Extended Hold</h3>
+          <p>Event occurs but check-in rate is critically low (&lt;10%). System flags for admin review due to suspicious activity or lack of interest.</p>
+          <div class="scenario-metrics">
+            <span>Check-in Rate: &lt;10%</span>
+            <span>Registered vs Attended: High Variance</span>
+            <span>Outcome: Held Pending Review</span>
+          </div>
+          <button class="scenario-btn">Begin Scenario</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card info-card">
+      <h2>Payment Flow Overview</h2>
+      <div class="flow-diagram">
+        <div class="flow-step">
+          <div class="flow-number">1</div>
+          <h4>Payment Capture</h4>
+          <p>Attendee payment processed and held in escrow account.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-number">2</div>
+          <h4>Pre-Event Notice</h4>
+          <p>48h before event, organizer receives cancellation window notice.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-number">3</div>
+          <h4>Attendance Verification</h4>
+          <p>Check-in system records attendee presence and participation.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-number">4</div>
+          <h4>Quality Assessment</h4>
+          <p>Attendee ratings and complaints collected in 48-72h post-event window.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-number">5</div>
+          <h4>Settlement Decision</h4>
+          <p>System evaluates metrics and releases, holds, or refunds funds based on rules.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Select a scenario above to begin workflow demonstration.</p>
+    </footer>
+  </div>
+
+  <script src="/static/js/demo-selector.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Escrow Demo</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Event Escrow Demo</h1>
+      <p>Simulate the escrow lifecycle for a paid event.</p>
+    </header>
+
+    <main class="card">
+      <h2>{{ event.name }}</h2>
+      <p><strong>Date:</strong> {{ event.date.strftime('%Y-%m-%d %H:%M UTC') }}</p>
+      <p><strong>Venue:</strong> {{ event.venue }}</p>
+      <p><strong>Ticket Price:</strong> ₹{{ event.ticket_price }}</p>
+      <p><strong>Escrow Amount:</strong> ₹{{ state.escrow_amount }}</p>
+      <p><strong>Current Payout Status:</strong> {{ state.payout_status }}</p>
+    </main>
+
+    <section class="card">
+      <h3>Event Summary</h3>
+      <p>Attendees: {{ state.attendees }}</p>
+      <p>Check-in rate: {{ state.checkin_rate }}%</p>
+      <p>Average rating: {{ state.rating_avg }}</p>
+      <p>Complaint rate: {{ state.complaint_rate }}%</p>
+    </section>
+
+    <section class="card timeline-card">
+      <h3>Event Timeline</h3>
+      <div class="timeline">
+        <div class="timeline-step">
+          <span class="circle">1</span>
+          <div>
+            <h4>Register & Pay</h4>
+            <p>Attendee payment is captured and held in escrow until the event outcome is confirmed.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <span class="circle">2</span>
+          <div>
+            <h4>48h Warning</h4>
+            <p>Organizer receives a reminder before the event. Cancellation here triggers a full refund.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <span class="circle">3</span>
+          <div>
+            <h4>QR Check-in</h4>
+            <p>Attendees scan a QR code at the venue to confirm attendance and update the attendance rate.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <span class="circle">4</span>
+          <div>
+            <h4>Post-Event Feedback</h4>
+            <p>Attendees submit ratings and complaints during the 48–72h review window.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <span class="circle">5</span>
+          <div>
+            <h4>Payout Decision</h4>
+            <p>Escrow is released, held, or frozen based on rating and complaint metrics.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card qr-card">
+      <h3>Mock QR Check-in</h3>
+      <p>Use the QR mockup below to simulate venue entry scan and attendance tracking.</p>
+      <div class="qr-box">
+        <div class="qr-code">EVENT-QR-2026</div>
+        <p>Scan to check in at the venue.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Actions</h3>
+      <a class="button" href="/">Back to public demo</a>
+      <a class="button" href="/admin">Open admin dashboard</a>
+    </section>
+
+    <footer>
+      <p>Demo application built with Flask, HTML, CSS and JavaScript.</p>
+    </footer>
+  </div>
+</body>
+</html>

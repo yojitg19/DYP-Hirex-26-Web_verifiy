@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escrow & Payout Management System</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <style>
+    .hero-section {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      color: #eff6ff;
+      font-weight: 600;
+    }
+
+    .hero-section p {
+      font-size: 1rem;
+      color: #cbd5e1;
+      margin-bottom: 32px;
+    }
+
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+
+    .path-card {
+      background: rgba(30, 41, 59, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .path-card:hover {
+      border-color: rgba(148, 163, 184, 0.32);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.20);
+    }
+
+    .path-label {
+      display: inline-block;
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .path-card h3 {
+      font-size: 1.35rem;
+      margin: 0 0 12px;
+      color: #eff6ff;
+      font-weight: 600;
+    }
+
+    .path-card p {
+      color: #cbd5e1;
+      margin-bottom: 24px;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .path-features {
+      text-align: left;
+      background: rgba(99, 102, 241, 0.06);
+      border: 1px solid rgba(99, 102, 241, 0.12);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+
+    .path-features ul {
+      margin: 8px 0;
+      padding-left: 20px;
+      list-style: none;
+    }
+
+    .path-features li {
+      color: #cbd5e1;
+      margin-bottom: 6px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .path-features li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #8b5cf6;
+      font-weight: 600;
+    }
+
+    .cta-button {
+      width: 100%;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .primary-cta {
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: white;
+      box-shadow: 0 8px 16px rgba(99, 102, 241, 0.25);
+    }
+
+    .primary-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(99, 102, 241, 0.30);
+    }
+
+    .secondary-cta {
+      background: rgba(148, 163, 184, 0.10);
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, 0.20);
+    }
+
+    .secondary-cta:hover {
+      background: rgba(148, 163, 184, 0.14);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .info-box {
+      background: rgba(56, 189, 248, 0.06);
+      border: 1px solid rgba(56, 189, 248, 0.16);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .info-box h4 {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #e0f2fe;
+    }
+
+    .info-box p {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Escrow & Payout Management System</h1>
+      <p>Secure payment processing with automated verification and settlement workflows.</p>
+    </header>
+
+    <section class="card hero-section">
+      <h2>Select Application Mode</h2>
+      <p>Choose between guided workflow demonstration or sandbox testing environment</p>
+    </section>
+
+    <div class="path-grid">
+      <!-- Guided Workflow -->
+      <div class="card path-card">
+        <span class="path-label">WORKFLOW GUIDE</span>
+        <h3>Guided Scenario Walkthrough</h3>
+        <p>Step-by-step demonstration of payment escrow workflows with real-world scenarios and decision logic.</p>
+        <div class="path-features">
+          <strong style="color: #eff6ff;">Includes scenarios:</strong>
+          <ul>
+            <li>Successful Event Completion & Payout Release</li>
+            <li>Event Cancellation & Refund Processing</li>
+            <li>Complaint Threshold & Escrow Freeze</li>
+            <li>Low Attendance & Held Escrow</li>
+          </ul>
+        </div>
+        <button class="cta-button primary-cta" onclick="window.location.href='/demo'">
+          Access Workflow Demo
+        </button>
+      </div>
+
+      <!-- Sandbox -->
+      <div class="card path-card">
+        <span class="path-label">TEST ENVIRONMENT</span>
+        <h3>Sandbox Testing Mode</h3>
+        <p>Free-form testing environment for experimenting with different payment scenarios and decision outcomes.</p>
+        <div class="path-features">
+          <strong style="color: #eff6ff;">Available functions:</strong>
+          <ul>
+            <li>Attendee Registration & Payment Capture</li>
+            <li>Check-in Verification & Attendance Tracking</li>
+            <li>Feedback Collection & Analytics</li>
+            <li>Payout Processing & Admin Review</li>
+          </ul>
+        </div>
+        <button class="cta-button secondary-cta" onclick="window.location.href='/index'">
+          Open Sandbox Environment
+        </button>
+      </div>
+    </div>
+
+    <section class="card">
+      <h2>System Overview</h2>
+      <p>The Escrow & Payout system manages payment flows between attendees, organizers, and the platform:</p>
+      <div class="info-grid">
+        <div class="info-box">
+          <h4>Attendee Protection</h4>
+          <p>Payments are held in escrow until event completion and quality verification. Full refunds issued if event is cancelled.</p>
+        </div>
+        <div class="info-box">
+          <h4>Organizer Incentives</h4>
+          <p>Payouts released upon meeting quality thresholds: minimum rating (3.5+) and complaint rate cap (≤10%).</p>
+        </div>
+        <div class="info-box">
+          <h4>Platform Operations</h4>
+          <p>5% processing fee on successful payouts. Objective decision rules ensure fairness and transparency across all transactions.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Escrow & Payout Management System v1.0 | Production Environment</p>
+    </footer>
+  </div>
+</body>
+</html>
