@@ -153,8 +153,8 @@ claim_rejected | badge_issued
 
 | Layer | Technology | Purpose |
 |---|---|---|
-| **Frontend** | React 19, Tailwind CSS, Vite | Interactive web application |
-| **Backend** | Python Flask, Node.js | REST API, business logic |
+| **Frontend** | Html, CSS, Vanila JS | Interactive web application |
+| **Backend** | Python Flask | REST API, business logic |
 | **Database** | SQLite | Users, claims, documents, audit log |
 | **Face AI** | DeepFace (Facenet) | 128-dimensional face embeddings |
 | **Liveness Detection** | MediaPipe FaceMesh | 468-landmark live face detection |
