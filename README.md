@@ -392,24 +392,6 @@ All responses follow a consistent shape:
 - Admin rejects payout → funds automatically refunded to attendees
 - Organizer loses credibility and platform trust
 
----
-
-## 🎯 Why This Matters for Hackathons
-
-**Innovation** 🚀  
-We're using AI (face recognition) to solve a real-world problem that affects millions of professionals daily.
-
-**Practical** 💡  
-This isn't just a concept - it's a working platform that actually verifies people in real-time.
-
-**User-Centric** 👥  
-The platform is built with both professionals and companies in mind.
-
-**Scalable** 📈  
-The architecture can handle growth from hundreds to millions of users.
-
-**Secure** 🔒  
-We take security seriously with encryption, JWT authentication, and facial verification.
 
 ---
 
@@ -423,24 +405,7 @@ We take security seriously with encryption, JWT authentication, and facial verif
 - **Duplicate detection** threshold: cosine similarity 0.80
 - **Rate limiting** on registration and OTP endpoints
 
----
 
-## 🏆 Why This Matters for Hackathons
-
-**Innovation** 🚀  
-Using AI (DeepFace + MediaPipe) combined with cryptographic integrity (SHA-256 chains) to solve real-world identity fraud.
-
-**Technical Depth** 💎  
-H0 root hash, claim chain verification, liveness detection — enterprise-grade security concepts.
-
-**Practical** 💡  
-Not just a concept — it **actually works** with real-time face verification and tamper detection.
-
-**Scalable** 📈  
-Microservice architecture can handle hundreds to millions of users.
-
-**Secure** 🔒  
-Multi-layered security: encryption, face verification, cryptographic integrity, behavioral analysis.
 
 ---
 
